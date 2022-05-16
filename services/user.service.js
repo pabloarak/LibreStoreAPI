@@ -11,8 +11,10 @@ class UserService {
   }
 
   async find() {
-    const response = await models.User.findAll();
-    return response;
+    const rta = await models.User.findAll({
+      include: ['customer'],
+    });
+    return rta;
   }
 
   async findOne(id) {
@@ -25,8 +27,8 @@ class UserService {
 
   async update(id, changes) {
     const user = await this.findOne(id);
-    const response = await user.update(changes);
-    return response;
+    const rta = await user.update(changes);
+    return rta;
   }
 
   async delete(id) {
