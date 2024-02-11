@@ -3,10 +3,10 @@ const express = require('express');
 const UserService = require('./../services/user.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const {
-  updateUserSchema,
-  createUserSchema,
-  getUserSchema,
-} = require('./../schemas/user.schema');
+  updateUserDto,
+  createUserDto,
+  getUserDto,
+} = require('./../dtos/user.dto');
 
 const router = express.Router();
 const service = new UserService();
@@ -22,7 +22,7 @@ router.get('/', async (req, res, next) => {
 
 router.get(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getUserDto, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -36,7 +36,7 @@ router.get(
 
 router.post(
   '/',
-  validatorHandler(createUserSchema, 'body'),
+  validatorHandler(createUserDto, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -50,8 +50,8 @@ router.post(
 
 router.patch(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
-  validatorHandler(updateUserSchema, 'body'),
+  validatorHandler(getUserDto, 'params'),
+  validatorHandler(updateUserDto, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -66,7 +66,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getUserDto, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

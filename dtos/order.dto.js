@@ -6,18 +6,18 @@ const orderId = Joi.number().integer();
 const productId = Joi.number().integer();
 const amount = Joi.number().integer().min(1);
 
-const getOrderSchema = Joi.object({
+const getOrderDto = Joi.object({
   id: id.required(),
 });
 
-const createOrderSchema = Joi.object({
+const createOrderDto = Joi.object({
   customerId: customerId.required(),
 });
 
-const addItemSchema = Joi.object({
+const addItemDto = Joi.object({
   orderId: orderId.required(),
   productId: productId.required(),
   amount: amount.required(),
 });
 
-module.exports = { getOrderSchema, createOrderSchema, addItemSchema };
+module.exports = { getOrderDto, createOrderDto, addItemDto };

@@ -8,11 +8,11 @@ const userId = Joi.number().integer();
 const email = Joi.string().email();
 const password = Joi.string();
 
-const getCustomerSchema = Joi.object({
+const getCustomerDto = Joi.object({
   id: id.required(),
 });
 
-const createCustomerSchema = Joi.object({
+const createCustomerDto = Joi.object({
   name: name.required(),
   lastName: lastName.required(),
   phone: phone.required(),
@@ -22,7 +22,7 @@ const createCustomerSchema = Joi.object({
   }),
 });
 
-const updateCustomerSchema = Joi.object({
+const updateCustomerDto = Joi.object({
   name,
   lastName,
   phone,
@@ -30,7 +30,7 @@ const updateCustomerSchema = Joi.object({
 });
 
 module.exports = {
-  getCustomerSchema,
-  createCustomerSchema,
-  updateCustomerSchema,
+  getCustomerDto,
+  createCustomerDto,
+  updateCustomerDto,
 };

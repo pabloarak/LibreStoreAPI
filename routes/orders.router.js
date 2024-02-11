@@ -4,14 +4,14 @@ const passport = require('passport');
 const OrderService = require('../services/order.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const { checkRoles } = require('./../middlewares/auth.handler');
-const { getOrderSchema, addItemSchema } = require('../schemas/order.schema');
+const { getOrderDto, addItemDto } = require('../dtos/order.dto');
 
 const router = express.Router();
 const service = new OrderService();
 
 router.get(
   '/:id',
-  validatorHandler(getOrderSchema, 'params'),
+  validatorHandler(getOrderDto, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -42,7 +42,7 @@ router.post(
 
 router.post(
   '/add-item',
-  validatorHandler(addItemSchema, 'body'),
+  validatorHandler(addItemDto, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;

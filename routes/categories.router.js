@@ -5,10 +5,10 @@ const CategoryService = require('./../services/category.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { checkRoles } = require('./../middlewares/auth.handler');
 const {
-  createCategorySchema,
-  updateCategorySchema,
-  getCategorySchema,
-} = require('./../schemas/category.schema');
+  createCategoryDto,
+  updateCategoryDto,
+  getCategoryDto,
+} = require('./../dtos/category.dto');
 
 const router = express.Router();
 const service = new CategoryService();
@@ -31,7 +31,7 @@ router.get(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin', 'customer'),
-  validatorHandler(getCategorySchema, 'params'),
+  validatorHandler(getCategoryDto, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -47,7 +47,7 @@ router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin'),
-  validatorHandler(createCategorySchema, 'body'),
+  validatorHandler(createCategoryDto, 'body'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -63,8 +63,8 @@ router.patch(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin'),
-  validatorHandler(getCategorySchema, 'params'),
-  validatorHandler(updateCategorySchema, 'body'),
+  validatorHandler(getCategoryDto, 'params'),
+  validatorHandler(updateCategoryDto, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -81,7 +81,7 @@ router.delete(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin'),
-  validatorHandler(getCategorySchema, 'params'),
+  validatorHandler(getCategoryDto, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

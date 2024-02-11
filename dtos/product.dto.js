@@ -13,7 +13,7 @@ const priceMax = Joi.number().integer().min(10);
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
 
-const createProductSchema = Joi.object({
+const createProductDto = Joi.object({
   name: name.required(),
   price: price.required(),
   description: description.required(),
@@ -21,7 +21,7 @@ const createProductSchema = Joi.object({
   categoryId: categoryId.required(),
 });
 
-const updateProductSchema = Joi.object({
+const updateProductDto = Joi.object({
   name: name,
   price: price,
   image: image,
@@ -29,11 +29,11 @@ const updateProductSchema = Joi.object({
   categoryId,
 });
 
-const getProductSchema = Joi.object({
+const getProductDto = Joi.object({
   id: id.required(),
 });
 
-const queryProductSchema = Joi.object({
+const queryProductDto = Joi.object({
   limit,
   offset,
   price,
@@ -45,8 +45,8 @@ const queryProductSchema = Joi.object({
 });
 
 module.exports = {
-  createProductSchema,
-  updateProductSchema,
-  getProductSchema,
-  queryProductSchema,
+  createProductDto,
+  updateProductDto,
+  getProductDto,
+  queryProductDto,
 };
